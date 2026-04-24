@@ -11,18 +11,50 @@
 </template>
 
 <style>
+/*
+ * ── Pixel Token v2.4 — Enterprise theme ─────────────────────────────────────
+ *
+ * Pixel's PostCSS plugin generates utility classes but does NOT inject semantic
+ * CSS custom property definitions globally. We define them here so all custom
+ * components (ErpHeader, ErpSidebar, ErpTablePage, etc.) can reference them.
+ *
+ * Values are the ENTERPRISE theme values from Token v2.4.
+ * Source: https://docs.mekari.design/docs/design-token-v2-4.html
+ */
+
 :root {
-  --mp-background-header: #142D26;
-  --mp-background-surface-bold: #272B32;
-  --mp-background-neutral-subtle: #F0F1F3;
-  --mp-background-neutral-subtle-hovered: #DCDFE4;
-  --mp-background-neutral-pressed: #DCDFE4;
-  --mp-background-stage: #FFFFFF;
-  --mp-border-default: #DCDFE4;
-  --mp-text-default: #272B32;
-  --mp-text-inverse: #FFFFFF;
-  --mp-text-interactive-default: #165082;
-  --mp-text-success-default: #1A6E48;
+  /* Background */
+  --mp-background-surface-bold:          #142D26;
+  --mp-background-surface:               #F8F9F9;
+  --mp-background-stage:                 #FFFFFF;
+  --mp-background-neutral:               #FFFFFF;
+  --mp-background-neutral-subtle:        #F8F9F9;
+  --mp-background-neutral-hovered:       #F8F9F9;
+  --mp-background-neutral-pressed:       #EBF0F1;
+  --mp-background-neutral-subtle-hovered:#EBF0F1;
+  --mp-background-nav-stack-hovered:     #D6F4E9;
+
+  /* Border */
+  --mp-border-default:                   #E3E7E9;
+  --mp-border-bold:                      #8C9596;
+
+  /* Text */
+  --mp-text-default:                     #080D0E;
+  --mp-text-inverse:                     #FFFFFF;
+  --mp-text-secondary:                   #3A4749;
+  --mp-text-selected:                    #0F6D4D;
+  --mp-text-link:                        #165082;
+  --mp-text-disabled:                    #8C9596;
+  --mp-text-danger:                      #A8352D;
+
+  /* Typography */
+  --mp-fonts-body: "Inter", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+
+  /* Radius */
+  --mp-radii-md: 0.375rem;
+
+  /* Shadow (Enterprise uses #1D1F2429 as shadow color) */
+  --mp-shadows-sm: 0px 10px 15px -3px #1D1F2429, 0px 4px 6px -2px #1D1F2429;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -31,7 +63,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-family: var(--mp-fonts-body);
   -webkit-font-smoothing: antialiased;
   background: var(--mp-background-surface-bold);
   color: var(--mp-text-default);
@@ -51,8 +83,8 @@ html, body {
   flex: 1;
   overflow: hidden;
   background: var(--mp-background-neutral-subtle);
-  border-left: 2px solid #142D26;
-  border-right: 2px solid #142D26;
+  border-left: 2px solid var(--mp-background-surface-bold);
+  border-right: 2px solid var(--mp-background-surface-bold);
   border-radius: 12px 12px 0 0;
 }
 

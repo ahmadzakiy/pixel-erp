@@ -54,7 +54,7 @@ const logoSrc = '/mekari-erp-logo.svg'
 <style scoped>
 .header-bar {
   height: 56px;
-  background: var(--mp-background-header);
+  background: var(--mp-background-surface-bold);
   display: flex;
   align-items: center;
   padding: 0 12px 0 0;
