@@ -1,0 +1,89 @@
+/**
+ * useTableState — reusable state for index/list pages.
+ *
+ * Handles: search, status filter, pagination (with reactive per-page), and sort.
+ *
+ * Usage:
+ *   const { search, statusFilter, currentPage, paginated, total, perPage, setPage, setPerPage } =
+ *     useTableState(rows, {
+ *       perPage: 10,
+ *       filterFn: (row, search, status) =>
+ *         row.customer.name.toLowerCase().includes(search) &&
+ *         (!status || row.status === status),
+ *     })
+ */
+export function useTableState<T>(
+  source: Ref<T[]> | ComputedRef<T[]>,
+  options?: {
+    perPage?: number
+    filterFn?: (row: T, search: string, status: string) => boolean
+  },
+) {
+  const perPage = ref(options?.perPage ?? 10)
+
+  const search = ref('')
+  const statusFilter = ref('')
+  const currentPage = ref(1)
+  const sortKey = ref('')
+  const sortDir = ref<'asc' | 'desc'>('asc')
+
+  // Reset to page 1 whenever filters or per-page changes
+  watch([search, statusFilter, perPage], () => { currentPage.value = 1 })
+
+  const filtered = computed(() => {
+    if (!options?.filterFn) return source.value
+    const s = search.value.toLowerCase().trim()
+    const st = statusFilter.value
+    return source.value.filter(row => options.filterFn!(row, s, st))
+  })
+
+  const sorted = computed(() => {
+    if (!sortKey.value) return filtered.value
+    return [...filtered.value].sort((a, b) => {
+      const av = (a as Record<string, unknown>)[sortKey.value]
+      const bv = (b as Record<string, unknown>)[sortKey.value]
+      const cmp = av === bv ? 0 : av! > bv! ? 1 : -1
+      return sortDir.value === 'asc' ? cmp : -cmp
+    })
+  })
+
+  const total = computed(() => sorted.value.length)
+  const totalPages = computed(() => Math.max(1, Math.ceil(total.value / perPage.value)))
+
+  const paginated = computed(() => {
+    const start = (currentPage.value - 1) * perPage.value
+    return sorted.value.slice(start, start + perPage.value)
+  })
+
+  function setPage(page: number) {
+    currentPage.value = Math.min(Math.max(1, page), totalPages.value)
+  }
+
+  function setPerPage(n: number) {
+    perPage.value = n
+  }
+
+  function toggleSort(key: string) {
+    if (sortKey.value === key) {
+      sortDir.value = sortDir.value === 'asc' ? 'desc' : 'asc'
+    } else {
+      sortKey.value = key
+      sortDir.value = 'asc'
+    }
+  }
+
+  return {
+    search,
+    statusFilter,
+    currentPage,
+    sortKey,
+    sortDir,
+    total,
+    totalPages,
+    paginated,
+    perPage,
+    setPage,
+    setPerPage,
+    toggleSort,
+  }
+}

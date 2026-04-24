@@ -11,9 +11,9 @@ const { pageTitle, currentPageKey } = useNavigation()
  *   2. Add an entry here:  'Menu label': defineAsyncComponent(() => import('~/components/pages/YourPage.vue'))
  */
 const pageRegistry: Record<string, Component> = {
-  'Home': defineAsyncComponent(() => import('~/components/pages/HomePage.vue')),
-  // 'Sales invoices': defineAsyncComponent(() => import('~/components/pages/SalesInvoicesPage.vue')),
-  // 'Financials':     defineAsyncComponent(() => import('~/components/pages/FinancialsPage.vue')),
+  'Home':           defineAsyncComponent(() => import('~/components/pages/HomePage.vue')),
+  'Sales invoices': defineAsyncComponent(() => import('~/components/pages/SalesInvoicesPage.vue')),
+  // 'Financials':  defineAsyncComponent(() => import('~/components/pages/FinancialsPage.vue')),
 }
 
 const PlaceholderPage = defineAsyncComponent(() => import('~/components/pages/PlaceholderPage.vue'))
@@ -53,7 +53,7 @@ const currentComponent = computed<Component>(
 
 .stage {
   flex: 1;
-  background: #FFFFFF;
+  background: var(--mp-background-stage);
   border-radius: 12px 12px 0 0;
   overflow: auto;
 }

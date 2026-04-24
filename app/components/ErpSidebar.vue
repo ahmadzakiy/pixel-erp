@@ -551,9 +551,9 @@ function cancelClose() {
   justify-content: flex-start;
 }
 
-.nav-item:hover { background-color: #EBF0F1; }
+.nav-item:hover { background-color: var(--mp-background-neutral-subtle-hovered); }
 .nav-item:hover img { filter: brightness(0) saturate(100%) invert(26%) sepia(60%) saturate(600%) hue-rotate(185deg) brightness(85%) contrast(95%); }
-.nav-item:hover .nav-label { color: var(--mp-text-interactive-default); }
+.nav-item:hover .nav-label { color: var(--mp-text-selected); }
 
 .nav-item.active { background-color: var(--mp-background-neutral-pressed); }
 .nav-item.active .nav-icon-line { display: none; }
@@ -562,7 +562,7 @@ function cancelClose() {
   display: block;
   filter: brightness(0) saturate(100%) invert(35%) sepia(55%) saturate(700%) hue-rotate(120deg) brightness(90%) contrast(100%);
 }
-.nav-item.active .nav-label { font-weight: 600; color: var(--mp-text-interactive-default); }
+.nav-item.active .nav-label { font-weight: 600; color: var(--mp-text-selected); }
 
 .nav-item img {
   width: 20px;
@@ -645,12 +645,12 @@ function cancelClose() {
   transition: background-color 100ms;
 }
 
-.panel-item:hover { background-color: #EBF0F1; }
+.panel-item:hover { background-color: var(--mp-background-neutral-subtle-hovered); }
 
 .panel-item.active {
-  background-color: #DCDFE4;
+  background-color: var(--mp-background-nav-stack-hovered);
   font-weight: 600;
-  color: #4B61DC;
+  color: var(--mp-text-selected);
 }
 
 .panel-item-icon {
@@ -685,12 +685,12 @@ function cancelClose() {
   position: fixed;
   z-index: 1000;
   width: 188px;
-  background: white;
-  border: 1px solid #758195;
-  border-radius: 6px;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -2px rgba(0,0,0,0.05);
+  background: var(--mp-background-neutral);
+  border: 1px solid var(--mp-border-bold);
+  border-radius: var(--mp-radii-md);
+  box-shadow: var(--mp-shadows-sm);
   padding: 8px 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-family: var(--mp-fonts-body);
 }
 
 .submenu-group { display: flex; flex-direction: column; }
@@ -714,13 +714,13 @@ function cancelClose() {
   cursor: pointer;
   font-size: 14px;
   font-weight: 400;
-  color: #272b32;
+  color: var(--mp-text-default);
   text-align: left;
   line-height: 20px;
   transition: background-color 100ms;
 }
 
-.submenu-item:hover { background-color: #EBF0F1; }
+.submenu-item:hover { background-color: var(--mp-background-neutral-subtle-hovered); }
 
 .submenu-item-icon { width: 20px; height: 20px; flex-shrink: 0; filter: brightness(0) opacity(0.5); }
 .submenu-item-icon--shortcut { width: 16px; height: 16px; }
