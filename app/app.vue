@@ -19,7 +19,9 @@ import { usePixelTheme } from "@mekari/pixel3";
 
 const { setNextTheme, setDarkMode, setProductTheme } = usePixelTheme();
 
-setNextTheme(true);
-setDarkMode(false);
-setProductTheme("enterprise");
+onMounted(() => {
+  setNextTheme(true);
+  setDarkMode(false);
+  setProductTheme("enterprise");
+});
 </script>
