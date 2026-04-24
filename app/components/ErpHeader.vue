@@ -67,7 +67,7 @@
         />
         <MpFlex
           direction="column"
-          alignItems="flex-stat"
+          alignItems="flex-start"
           :display="{ base: 'none', lg: 'flex' }"
         >
           <MpText size="label" color="text.inverse.static" weight="semiBold">
